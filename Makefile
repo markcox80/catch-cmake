@@ -1,5 +1,5 @@
 prefix ?= /usr/local
-destprefix ?= /
+destdir ?= /
 
 makefile_path = $(abspath $(lastword $(MAKEFILE_LIST)))
 source_path = $(shell dirname $(makefile_path))
@@ -13,10 +13,10 @@ install: install-headers install-cmake
 
 .PHONY: install-cmake
 install-cmake:
-	mkdir -p $(destprefix)/$(share_path)
-	m4 -DCATCH_INCLUDE_DIRECTORY=$(prefix)/include/catch $(catch_cmake_config) > $(destprefix)/$(share_path)/catch-config.cmake
+	mkdir -p $(destdir)/$(share_path)
+	m4 -DCATCH_INCLUDE_DIRECTORY=$(prefix)/include/catch $(catch_cmake_config) > $(destdir)/$(share_path)/catch-config.cmake
 
 .PHONY: install-headers
 install-headers:
-	mkdir -p $(destprefix)/$(prefix)/include/catch
-	cp -rv $(catch_distribution)/include/* $(destprefix)/$(prefix)/include/catch
+	mkdir -p $(destdir)/$(prefix)/include/catch
+	cp -rv $(catch_distribution)/include/* $(destdir)/$(prefix)/include/catch
